@@ -1,23 +1,36 @@
 
 #include "Fixed.hpp"
 
-Fixed::Fixed() : bits(0) 
+Fixed::Fixed() : value_(0) 
 {
-    std::cout << "created constractor" << std::endl;
+    std::cout << "Constractor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& other)
+Fixed::Fixed(const Fixed &other) : value_(other.value_)
 {
-    std::cout << "copy constractor" << std::endl;
-    *this = other;
-}
+    std::cout << "Copy construtor called" << std::endl;
+};
 
-Fixed& Fixed::operator=(const Fixed& other)
+Fixed& Fixed::operator=(const Fixed &other)
 {
-
+    if (this != &other)
+    {
+        value_ = other.value_;
+    }
+    return (*this);
 }
 
 Fixed::~Fixed()
 {
-    std::cout << "deconstracted" << std::endl;
+    std::cout << "destracted" << std::endl;
+}
+
+int Fixed::getRawBits(void) const
+{
+    return (this->value_);
+}
+
+void Fixed::setRawBits(int const raw)
+{
+    this->value_= raw;
 }
