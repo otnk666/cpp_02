@@ -6,17 +6,17 @@
 #    By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/16 21:25:56 by skomatsu          #+#    #+#              #
-#    Updated: 2025/10/16 21:25:57 by skomatsu         ###   ########.fr        #
+#    Updated: 2026/01/05 22:17:36 by skomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fixed
+NAME = ex00
 
 SRCS = Fixed.cpp main.cpp
 
 CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 OBJS = $(SRCS:.cpp=.o)
 

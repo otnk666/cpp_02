@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 21:25:16 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/10/16 21:25:32 by skomatsu         ###   ########.fr       */
+/*   Updated: 2026/01/05 21:10:54 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ Fixed& Fixed::operator=(const Fixed &other)
 
 Fixed::~Fixed()
 {
-    std::cout << "destracted" << std::endl;
+    std::cout << "Destractor called" << std::endl;
 }
 
 int Fixed::getRawBits(void) const
