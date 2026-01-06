@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
 #include <iostream>
-#include <string.h>
 
 class Fixed
 {
     private:
-        int     value_;
-        static const int fractionalBits_ = 8;
+        int     _value;
+        static const int _fractionalBits = 8;
 
     public:
         Fixed();
@@ -30,3 +30,5 @@ class Fixed
         int     getRawBits(void) const;
         void    setRawBits(int const raw);
 };
+
+#endif

@@ -17,26 +17,24 @@ Fixed::Fixed() : _value(0)
     std::cout << "Constructor called" << std::endl;
 }
 
-Fixed::Fixed(const int value)
+Fixed::Fixed(const int value) : _value(value << _fractionalBits)
 {
-    _value = value << _fractionalBits;
     std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float value)
+Fixed::Fixed(const float value) : _value(static_cast<int>(roundf(value * (1 << _fractionalBits))))
 {
-    _value = static_cast<int>(roundf(value * ( 1 << _fractionalBits)));
     std::cout << "Float constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed &other)
+Fixed::Fixed(const Fixed &other) : _value(other._value)
 {
-    std::cout << "Copy construtor called" << std::endl;
-    this->_value = other._value;
+    std::cout << "Copy constructor called" << std::endl;
 }
 
 Fixed& Fixed::operator=(const Fixed &other)
 {
+    std::cout << "Copy assignment operator called" << std::endl;
     if (this != &other)
     {
         _value = other._value;
@@ -46,7 +44,7 @@ Fixed& Fixed::operator=(const Fixed &other)
 
 Fixed::~Fixed()
 {
-    std::cout << "Destractor called" << std::endl;
+    std::cout << "Destructor called" << std::endl;
 }
 
 // Comparison operators
@@ -98,9 +96,8 @@ Fixed Fixed::operator-(const Fixed& rhs) const
 Fixed Fixed::operator*(const Fixed& rhs) const
 {
     Fixed result;
-    long long temp;
-    temp = static_cast<long long>(_value) * static_cast<long long>(rhs._value);
-    result.setRawBits(static_cast<int>(temp >> _fractionalBits));
+    float temp = this->toFloat() * rhs.toFloat();
+    result = Fixed(temp);
     return result;
 }
 
@@ -109,13 +106,12 @@ Fixed Fixed::operator/(const Fixed& rhs) const
     if (rhs._value == 0)
     {
         std::cout << "Error: Division by zero" << std::endl;
-        return Fixed();        
+        return Fixed();
     }
-    
+
     Fixed result;
-    long long temp;
-    temp = static_cast<long long>(_value) << _fractionalBits;
-    result.setRawBits(static_cast<int>(temp / rhs._value));
+    float temp = this->toFloat() / rhs.toFloat();
+    result = Fixed(temp);
     return result;
 }
 
@@ -186,7 +182,7 @@ int Fixed::getRawBits(void) const
 
 void Fixed::setRawBits(int const raw)
 {
-    this->_value= raw;
+    this->_value = raw;
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& rhs)
@@ -194,3 +190,4 @@ std::ostream& operator<<(std::ostream& os, const Fixed& rhs)
     os << rhs.toFloat();
     return os;
 }
+

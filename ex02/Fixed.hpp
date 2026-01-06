@@ -43,19 +43,19 @@ class Fixed
     Fixed operator*(const Fixed& rhs) const;
     Fixed operator/(const Fixed& rhs) const;
 
-    Fixed& operator++();    // 前置 (++i)
-    Fixed operator++(int);  // 後置 (i++)
-    Fixed& operator--();    // 前置 (--i)
-    Fixed operator--(int);  // 後置 (i--)
+    Fixed& operator++();    // Pre-increment (++i)
+    Fixed operator++(int);  // Post-increment (i++)
+    Fixed& operator--();    // Pre-decrement (--i)
+    Fixed operator--(int);  // Post-decrement (i--)
 
-    // 静的メンバ関数 (最小値・最大値の取得)
-    // lhs = Left Hand Side (左辺), rhs = Right Hand Side (右辺)
+    // Static member functions (min / max)
+    // lhs = Left Hand Side, rhs = Right Hand Side
     static Fixed& min(Fixed& lhs, Fixed& rhs);
     static const Fixed& min(const Fixed& lhs, const Fixed& rhs);
     static Fixed& max(Fixed& lhs, Fixed& rhs);
     static const Fixed& max(const Fixed& lhs, const Fixed& rhs);
 
-    // 変換関数
+    // Conversion functions
     float toFloat() const;
     int toInt() const;
 
